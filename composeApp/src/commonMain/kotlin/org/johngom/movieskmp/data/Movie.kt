@@ -1,4 +1,4 @@
-package org.johngom.movieskmp
+package org.johngom.movieskmp.data
 
 data class Movie(val id: Int, val title: String, val poster: String)
 
