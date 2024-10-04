@@ -33,6 +33,7 @@ import movieskmp.composeapp.generated.resources.Res
 import movieskmp.composeapp.generated.resources.app_name
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.johngom.movieskmp.common.LoadingIndicator
 import org.johngom.movieskmp.data.Movie
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -53,14 +54,7 @@ fun HomeScreen(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
         ) { padding ->
             val state = viewModel.state
-            if (state.isLoading) {
-                Box(
-                    modifier = Modifier.fillMaxSize().padding(padding),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator()
-                }
-            }
+            LoadingIndicator(enabled = state.isLoading)
             LazyVerticalGrid(
                 columns = GridCells.Adaptive(120.dp),
                 contentPadding = PaddingValues(4.dp),

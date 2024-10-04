@@ -8,6 +8,8 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinxSerialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.androidxRoom)
 }
 
 kotlin {
@@ -52,10 +54,16 @@ kotlin {
             implementation(libs.ktor.serialization.json)
             implementation(libs.androidx.navigation.compose)
             implementation(libs.androidx.lifecycle.viewmodel.compose)
+            implementation(libs.androidx.room.runtime)
+            implementation(libs.androidx.sqlite.bundle)
         }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+        }
+
+        sourceSets.commonMain {
+            kotlin.srcDir("build/generated/ksp/metadata")
         }
 
         task("testClasses")
@@ -97,5 +105,13 @@ android {
     dependencies {
         debugImplementation(compose.uiTooling)
     }
+}
+
+dependencies {
+    ksp(libs.androidx.room.compiler)
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
