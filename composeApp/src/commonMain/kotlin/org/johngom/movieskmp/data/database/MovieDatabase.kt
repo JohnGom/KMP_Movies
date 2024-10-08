@@ -12,10 +12,4 @@ const val DATABASE_NAME = "movies.db"
 @ConstructedBy(AppDatabaseConstructor::class)
 abstract class MovieDatabase: RoomDatabase() {
     abstract fun moviesDAO(): MoviesDAO
-
-}
-
-@Suppress("NO_ACTUAL_FOR_EXPECT")
-expect object AppDatabaseConstructor : RoomDatabaseConstructor<MovieDatabase> {
-    override fun initialize(): MovieDatabase
 }
