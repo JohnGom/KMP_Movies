@@ -1,14 +1,18 @@
-package org.johngom.movieskmp.data
+package org.johngom.movieskmp.data.remote
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import io.ktor.client.request.parameter
 
 class MoviesService(private val client: HttpClient) {
 
-    suspend fun fetchPopularMovies(): RemoteResult {
+    suspend fun fetchPopularMovies(region: String): RemoteResult {
         return client
-            .get("/3/discover/movie?sort_by=popularity.desc")
+            .get("/3/discover/movie") {
+                parameter("sort_by", "popularity.desc")
+                parameter("region", region)
+            }
             .body<RemoteResult>()
     }
 

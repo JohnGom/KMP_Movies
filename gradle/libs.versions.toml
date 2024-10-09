@@ -22,6 +22,7 @@ androidx-room = "2.7.0-alpha09"
 androidx-sqliteBundle = "2.5.0-alpha09"
 buildConfig = "5.3.5"
 koin = "4.0.0"
+moko-permissions = "0.18.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -53,6 +54,7 @@ koin-android = { group = "io.insert-koin", name = "koin-android" }
 koin-core = { group = "io.insert-koin", name = "koin-core" }
 koin-compose = { group = "io.insert-koin", name = "koin-compose" }
 koin-compose-viewmodel = { group = "io.insert-koin", name = "koin-compose-viewmodel", version.ref = "koin"}
+moko-permissions = { group = "dev.icerock.moko", name = "permissions-compose", version.ref = "moko-permissions" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -11,7 +11,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -34,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import movieskmp.composeapp.generated.resources.Res
 import movieskmp.composeapp.generated.resources.back
+import movieskmp.composeapp.generated.resources.favorite
 import movieskmp.composeapp.generated.resources.original_language
 import movieskmp.composeapp.generated.resources.original_title
 import movieskmp.composeapp.generated.resources.popularity
@@ -57,6 +61,16 @@ fun DetailScreen(vm:  DetailViewModel, onBack: () -> Unit) {
                     onBack = onBack,
                     scrollBehavior = scrollBehavior
                 )
+            },
+            floatingActionButton = {
+                state.movie?.let { movie ->
+                    FloatingActionButton(onClick = vm::onFavoriteClick) {
+                        Icon(
+                            imageVector = if(movie.favorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                            contentDescription = stringResource(Res.string.favorite)
+                        )
+                    }
+                }
             }
         ) { padding ->
             LoadingIndicator(enabled = state.loading, modifier = Modifier.padding(padding))

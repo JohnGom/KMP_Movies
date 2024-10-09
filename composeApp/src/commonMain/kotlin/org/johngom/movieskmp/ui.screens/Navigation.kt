@@ -1,30 +1,15 @@
 package org.johngom.movieskmp.ui.screens
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import io.ktor.client.HttpClient
-import io.ktor.client.plugins.DefaultRequest
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.http.URLProtocol
-import io.ktor.http.parametersOf
-import io.ktor.serialization.kotlinx.json.json
-import kotlinx.serialization.json.Json
-import org.johngom.movieskmp.BuildConfig
-import org.johngom.movieskmp.data.MoviesRepository
-import org.johngom.movieskmp.data.MoviesService
-import org.johngom.movieskmp.data.database.MoviesDAO
-import org.johngom.movieskmp.ui.screens.detail.DetailViewModel
 import org.johngom.movieskmp.ui.screens.detail.DetailScreen
 import org.johngom.movieskmp.ui.screens.home.HomeScreen
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
-import ui.screens.home.HomeViewModel
 
 @Composable
 fun Navigation () {

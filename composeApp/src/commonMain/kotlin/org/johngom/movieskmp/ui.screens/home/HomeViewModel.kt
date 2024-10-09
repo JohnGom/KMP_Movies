@@ -17,7 +17,7 @@ class HomeViewModel(
     var state by mutableStateOf(UiState())
         private set
 
-    init {
+    fun onUiReady() {
          viewModelScope.launch {
              state = UiState(isLoading = true)
              repository.movies.collect {

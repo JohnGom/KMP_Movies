@@ -3,15 +3,19 @@ package org.johngom.movieskmp.data
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
 import org.johngom.movieskmp.data.database.MoviesDAO
+import org.johngom.movieskmp.data.remote.MoviesService
+import org.johngom.movieskmp.data.remote.RemoteMovie
 
 class MoviesRepository(
     private val moviesService: MoviesService,
-    private val moviesDAO: MoviesDAO
+    private val moviesDAO: MoviesDAO,
+    private val regionRepository: RegionRepository
 ) {
 
     val movies: Flow<List<Movie>> = moviesDAO.fetchPopularMovies().onEach { movies ->
         if(movies.isEmpty()) {
-            val popularMovies = moviesService.fetchPopularMovies().results.map { it.toDomainMovie() }
+            val popularMovies = moviesService.fetchPopularMovies(regionRepository.fetchRegion())
+                .results.map { it.toDomainMovie() }
             moviesDAO.insertMovies(popularMovies)
         }
     }
@@ -21,7 +25,10 @@ class MoviesRepository(
             val movieById = moviesService.fetchMovieById(id).toDomainMovie()
             moviesDAO.insertMovies(listOf(movieById))
         }
+    }
 
+    suspend fun toggleFavorite(movie: Movie) {
+        moviesDAO.insertMovies(listOf(movie.copy(favorite = !movie.favorite)))
     }
 }
 
@@ -36,4 +43,5 @@ private fun RemoteMovie.toDomainMovie() = Movie(
     popularity = popularity,
     originalLanguage = originalLanguage,
     originalTitle = originalTitle,
+    favorite = false
 )

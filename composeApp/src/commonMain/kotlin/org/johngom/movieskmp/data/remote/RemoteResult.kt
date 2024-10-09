@@ -1,4 +1,4 @@
-package org.johngom.movieskmp.data
+package org.johngom.movieskmp.data.remote
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
