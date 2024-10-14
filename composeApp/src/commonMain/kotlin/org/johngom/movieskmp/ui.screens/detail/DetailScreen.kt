@@ -24,6 +24,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.AnnotatedString
@@ -51,7 +53,7 @@ import org.johngom.movieskmp.data.Movie
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(vm:  DetailViewModel, onBack: () -> Unit) {
-    val state = vm.state
+    val state by vm.state.collectAsState()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Screen {
         Scaffold(

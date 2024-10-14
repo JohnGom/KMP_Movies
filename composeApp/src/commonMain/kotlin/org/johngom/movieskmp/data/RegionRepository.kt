@@ -1,7 +1,15 @@
 package org.johngom.movieskmp.data
 
-class RegionRepository {
-    fun fetchRegion(): String {
-        return "US"
+interface RegionDataSource {
+    suspend fun fetchRegion(): String
+}
+
+const val DEFAULT_REGION = "US"
+
+class RegionRepository(
+    private val dataSource: RegionDataSource
+) {
+    suspend fun fetchRegion(): String {
+        return dataSource.fetchRegion()
     }
 }

@@ -16,13 +16,14 @@ junit = "4.13.2"
 kotlin = "2.0.20"
 coil = "3.0.0-alpha06"
 ktor = "2.3.12"
-navigation-compose = "2.8.0-alpha02"
+navigation-compose = "2.8.0-alpha09"
 ksp="2.0.20-1.0.24"
 androidx-room = "2.7.0-alpha09"
 androidx-sqliteBundle = "2.5.0-alpha09"
 buildConfig = "5.3.5"
 koin = "4.0.0"
 moko-permissions = "0.18.0"
+playServiceLocation = "21.3.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -55,6 +56,7 @@ koin-core = { group = "io.insert-koin", name = "koin-core" }
 koin-compose = { group = "io.insert-koin", name = "koin-compose" }
 koin-compose-viewmodel = { group = "io.insert-koin", name = "koin-compose-viewmodel", version.ref = "koin"}
 moko-permissions = { group = "dev.icerock.moko", name = "permissions-compose", version.ref = "moko-permissions" }
+playServiceLocation = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServiceLocation" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
